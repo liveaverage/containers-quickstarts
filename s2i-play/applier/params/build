@@ -1,0 +1,2 @@
+PLAY_BUILDER_SOURCE_REPOSITORY_URL=https://github.com/liveaverage/containers-quickstarts.git
+PLAY_BUILDER_SOURCE_REPOSITORY_REF=atomic
