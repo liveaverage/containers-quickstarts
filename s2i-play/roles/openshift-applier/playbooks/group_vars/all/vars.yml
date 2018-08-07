@@ -1,0 +1,12 @@
+oc_secrets:
+  - secret_name: git-ssh
+    secret_type: kubernetes.io/ssh-auth
+    secret_data: 
+      ssh-privatekey: "{{ ssh_key1 | b64encode }}"
+  - secret_name: git-htpass
+    secret_type: Opaque
+    secret_data: 
+      username: "{{ htpass_username | b64encode }}"
+      password: "{{ htpass_password | b64encode }}"
+    
+
