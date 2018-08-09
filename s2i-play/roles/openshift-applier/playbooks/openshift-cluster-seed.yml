@@ -1,14 +1,19 @@
 ---
 - hosts: seed-hosts[0]
-  roles:
-    - openshift-applier
+  #roles:
+  #  - openshift-applier
   tasks:
+    - name: Render and import secrets
+      shell: >
+        echo "{{ lookup('template', 'secret.j2') }}" > /tmp/{{ item.secret_name}}.txt
+      with_items: "{{ oc_secrets }}"
+
     - name: Render and import secrets
       shell: >
         echo "{{ lookup('template', 'secret.j2') }}" | oc create -f -
       with_items: "{{ oc_secrets }}"
       register: command_result
-      no_log: true
+      #no_log: true
       failed_when:
         - command_result.rc != 0
         - "'AlreadyExists' not in command_result.stderr"
