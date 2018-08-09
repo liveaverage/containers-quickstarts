@@ -19,7 +19,7 @@ ansible-playbook -i <inventory> path/to/openshift-applier/playbooks/openshift-cl
 ```
 
 ### 3. Custom Secret Definitions
-If you'd like to configure custom secrets in the project while executing the s2i-play build, configure a list of dictionaries in `group_vars/all/vars.yml`. To secure any sensitive information, reference vault vars (`group_vars/all/vault.yml`) from your global `vars.yml` file and execute with an `--ask-vault-pass` or `--vault-password-file=~/.pass`.
+If you'd like to configure custom secrets in the project while executing the s2i-play build, configure a list of dictionaries in `group_vars/all/vars.yml`. Ensure this values are passed to the **b64encode** jinja2 filter. To secure any sensitive information, reference vault vars (`group_vars/all/vault.yml`) from your global `vars.yml` file and execute with an `--ask-vault-pass` or `--vault-password-file=~/.pass`.
 
 ```
 ansible-playbook -i applier/inventory roles/openshift-applier/playbooks/openshift-cluster-seed.yml --ask-vault-pass
